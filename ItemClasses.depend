@@ -1,0 +1,70 @@
+# depslib dependency file v1.0
+1481439438 source:c:\users\faisa\desktop\inventoryclasses\main.cpp
+	<iostream>
+	"Item.h"
+	"ItemList.h"
+
+1481440511 source:c:\users\faisa\desktop\inventoryclasses\item.cpp
+	<iostream>
+	"Item.h"
+	"ItemList.h"
+
+1481433019 c:\users\faisa\desktop\inventoryclasses\item.h
+	<string>
+
+1481413534 source:c:\users\faisa\desktop\inventoryclasses\itemlist.cpp
+	<iostream>
+	"ItemList.h"
+
+1481163342 c:\users\faisa\desktop\inventoryclasses\itemlist.h
+	"Item.h"
+
+1481849238 source:c:\users\faisa\desktop\codeblocks files\inventoryclasses\itemlist.cpp
+	<iostream>
+	<fstream>
+	"ItemList.h"
+	"Item.h"
+
+1481848648 c:\users\faisa\desktop\codeblocks files\inventoryclasses\itemlist.h
+	"Item.h"
+
+1481847145 c:\users\faisa\desktop\codeblocks files\inventoryclasses\item.h
+	<string>
+
+1481849227 source:c:\users\faisa\desktop\codeblocks files\inventoryclasses\main.cpp
+	<iostream>
+	"Item.h"
+	"ItemList.h"
+
+1481848880 source:c:\users\faisa\desktop\codeblocks files\inventoryclasses\item.cpp
+	<iostream>
+	"Item.h"
+	"ItemList.h"
+
+1482378574 source:c:\users\faisa\desktop\programs\inventoryclasses\itemlist.cpp
+	<iostream>
+	<stdlib.h>
+	<fstream>
+	<iomanip>
+	"ItemList.h"
+	"Item.h"
+
+1482378584 c:\users\faisa\desktop\programs\inventoryclasses\itemlist.h
+	"Item.h"
+
+1482376955 c:\users\faisa\desktop\programs\inventoryclasses\item.h
+	<string>
+
+1482378619 source:c:\users\faisa\desktop\programs\inventoryclasses\main.cpp
+	<iostream>
+	<stdlib.h>
+	"Item.h"
+	"ItemList.h"
+
+1482376961 source:c:\users\faisa\desktop\programs\inventoryclasses\item.cpp
+	<iostream>
+	<stdlib.h>
+	<iomanip>
+	"Item.h"
+	"ItemList.h"
+

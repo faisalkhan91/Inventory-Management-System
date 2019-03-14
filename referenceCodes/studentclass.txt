@@ -1,0 +1,256 @@
+#include <iostream>
+
+using namespace std;
+
+#define MAX_SUDENTS 5
+
+typedef struct{
+    int ID;
+    string name;
+    float score;
+}tStudent;
+
+int menuSelection(void);
+void readStudentScores(tStudent List[]);
+void PrintStudentList(tStudent List[]);
+int findMaxName(tStudent List[], int cnt);
+void sortStudentByName(tStudent List[], int cnt);
+
+
+int main()
+{
+    tStudent studList[MAX_SUDENTS];
+    int sel;
+
+    do{
+        sel = menuSelection();
+        switch(sel)
+        {
+            case 1:
+                //read student score
+                readStudentScores(studList);
+            break;
+            case 2:
+                PrintStudentList(studList);
+            break;
+            case 3:
+                sortStudentByName(studList, MAX_SUDENTS);
+            break;
+            case 4:
+                //terminate app
+                cout<<"Good Bye!!!"<<endl;
+            break;
+            default:
+                cout<<"ERROR: invalid selection try again!!!"<<endl;
+        }
+
+    }while(sel !=4);
+    cout << "Hello world!" << endl;
+    return 0;
+}
+
+
+int menuSelection(void)
+{
+    int sel;
+
+    cout<<"\t\tStudent System" << endl;
+    cout<<"1. Read all student scores" << endl;
+    cout<<"2. print student list" << endl;
+    cout<<"3. Sort student by name" << endl;
+    cout<<"4. quit" << endl;
+    cout<<"Select:";
+    cin>>sel;
+    return sel;
+}
+
+void readStudentScores(tStudent List[])
+{
+    for(int i=0;i<MAX_SUDENTS;++i)
+    {
+        cout<< "Enter Student ID:";
+        cin>>List[i].ID;
+        cout<< "Enter Student score:";
+        cin>>List[i].score;
+        cout<< "Enter Student name:";
+        getline(cin>>ws, List[i].name);
+    }
+}
+
+void PrintStudentList(tStudent List[])
+{
+    for(int i=0;i<MAX_SUDENTS;++i)
+    {
+        cout << List[i].ID << ", " << List[i].score << ", "<< List[i].name << endl;
+    }
+}
+
+int findMaxName(tStudent List[], int cnt)
+{
+    int maxIndex=0;
+    for(int i=1; i<cnt;++i)
+    {
+        if(List[maxIndex].name < List[i].name)
+        {
+            maxIndex = i;
+        }
+    }
+    return maxIndex;
+}
+
+void sortStudentByName(tStudent List[], int cnt)
+{
+    int maxIndex;
+    tStudent temp;
+    for(int i=cnt; i>1;--i)
+    {
+        maxIndex=findMaxName(List, i);
+        temp = List[maxIndex];
+        List[maxIndex] = List[i-1];
+        List[i-1] = temp;
+    }
+}
+--------------------------------------------------------------------
+
+student main
+
+#include <iostream>
+#include "Student.hpp"
+
+using namespace std;
+
+void calc(int& , int&);
+
+int main()
+{
+    int x=10, y=5;
+    calc(x, y);
+    cout<<"x="<<x<<endl;
+    cout<<"y="<<y<<endl;
+    return 0;
+}
+
+void calc(int& x, int& y)
+{
+    x += 5;
+    y *=2;
+    cout<<"x="<< x<<endl;
+    cout<<"y="<< y<<endl;
+}
+
+
+----------------------------------------------------------
+Student functions
+
+#include "Student.hpp"
+#include <iostream>
+Student::Student()
+{
+    id=10;
+    name="Sam";
+    gpa=4.0;
+}
+Student::Student(int id, string name, float gpa)
+{
+    this->id=id;
+    this->name=name;
+    this->gpa=gpa;
+}
+void Student::setId(int x)
+{
+    id=x;
+}
+
+void Student::printStudent(void)
+{
+    cout<<"Student ID: "<<id<<endl;
+    cout<<"Student Name: "<<name<<endl;
+    cout<<"Student GPA: "<<gpa<<endl;
+}
+
+-----------------------------------------------------------
+
+Student header
+
+#ifndef STUDENT_HPP_INCLUDED
+#define STUDENT_HPP_INCLUDED
+
+#include <string>
+
+using namespace std;
+
+class Student{
+private:
+    int id;
+    string name;
+    float gpa;
+
+public:
+    Student();
+    Student(int id, string name, float gpa);
+    void setId(int id);
+    int getId(){return id;};
+    void setName(string name){this->name=name;};
+    string getName(){return name;};
+    void setGpa(float gpa){this->gpa=gpa;};
+    float getGpa(){return gpa;};
+    void printStudent(void);
+
+};
+
+#endif // STUDENT_HPP_INCLUDED
+
+--------------------------------------------------------------------
+
+Studentlist function
+
+#include "SuperStudentList.hpp"
+#include <iostream>
+
+SuperStudentList::SuperStudentList()
+{
+    count=0;
+}
+
+void SuperStudentList::AddStudent(Student stud)
+{
+    if(count < MAX_STUDENT)
+    {
+        studList[count]=stud;
+        ++count;
+    }
+    else
+    {
+        cout<<"ERROR:Exceeded max allowed storage!!!"<<endl;
+    }
+}
+
+void SuperStudentList::printStudentList()
+{
+    for(int i=0; i<count;++i)
+    {
+        studList[i].printStudent();
+    }
+}
+
+-----------------------------------------------------------------------
+
+student list header
+
+#ifndef SUPERSTUDENTLIST_HPP_INCLUDED
+#define SUPERSTUDENTLIST_HPP_INCLUDED
+#include "Student.hpp"
+
+#define MAX_STUDENT 100
+class SuperStudentList{
+private:
+   Student studList[MAX_STUDENT];
+   int count;
+
+public:
+    SuperStudentList();
+    void AddStudent(Student stud);
+    void printStudentList();
+};
+
+#endif // SUPERSTUDENTLIST_HPP_INCLUDED

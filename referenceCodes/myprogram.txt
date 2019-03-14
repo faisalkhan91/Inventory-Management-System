@@ -1,0 +1,176 @@
+#include <iostream>
+#include "Student.h"
+
+using namespace std;
+
+#define MAX_STUDENT 100 // Max number of students supported
+
+int menuSelection(void);
+
+int main()
+{
+    int select, i;
+    int sid;
+    string option ;
+    int count = 0;
+    Student stud[MAX_STUDENT];
+
+    do{
+        select = menuSelection();
+        switch(select)
+        {
+            case 1:
+                for(int i=0; i<MAX_STUDENT; ++i)
+                    {
+                        //Function call to register a Student
+                        stud[i].registerStudent();
+                        //Tracks the count of the students entered
+                        count++;
+
+                        //Condition to provide user with a choice to enter another user
+                        cout<<"Do you want to Enter another Student? [Y/N]";
+                        getline(cin>>ws, option);
+
+                        if (option == "Y" || option == "y" || option == "Yes")
+                        {
+                            continue;
+                        }
+                        else if (option == "N" || option == "n" || option == "No"){
+                            break;
+                        }
+                    }
+            break;
+            case 2:
+                //Displays the number of registered students
+                cout<<count<<" registered student(s) found!\n\n";
+                for(int i=0; i<count; ++i)
+                {
+                    //Function call to print all the registered students
+                    stud[i].printStudent(count);
+                }
+            break;
+            case 3:
+                cout << "Please input the id that needs to be searched:";
+                cin >> sid;
+                for(int i=0; i<count; ++i)
+                    {
+                        //Function call to search a student by id
+                        stud[i].searchStudent(sid);
+                    }
+            break;
+            case 4:
+                cout<<"Good Bye!!!"<<endl;
+            break;
+            default:
+                cout<<"ERROR: invalid selection try again!!!"<<endl;
+        }
+
+    }while(select !=4);
+
+    return 0;
+}
+
+int menuSelection(void)
+{
+    int select;
+
+    cout<<"\t\tStudent System" << endl;
+    cout<<"1. Register a new student" << endl;
+    cout<<"2. Print student list" << endl;
+    cout<<"3. Find student by ID" << endl;
+    cout<<"4. Quit" << endl;
+    cout<<"Select:";
+    cin>>select;
+    return select;
+}
+
+------------------------------------------------------------------------
+
+Student function
+
+#include <iostream>
+#include "Student.h"
+
+#define MAX_STUDENT 100
+
+//Constructor for student
+Student::Student(int id, string name, float gpa)
+{
+    this->id=id;
+    this->name=name;
+    this->gpa=gpa;
+}
+
+//Function to store values of the object student
+int Student::registerStudent()
+{
+    string option;
+    cout << "Enter the student ID: ";
+    cin >> id;
+    cout << "Enter the student NAME: ";
+    getline(cin >> ws, name);
+    cout << "Enter the student GPA: ";
+    cin >> gpa;
+
+    return 0;
+}
+
+//Function to print all the registered students
+int Student::printStudent(int pcount)
+{
+    cout<<pcount<<") ";
+    cout << id << ", " << name << ", "<< gpa << endl;
+
+    return 0;
+}
+
+//Function to search all the registered students
+int Student::searchStudent(int psid)
+{
+    if (psid==id)
+    {
+        cout << "Student Details:\n\n";
+        cout << id << ", " << name << ", "<< gpa << endl;
+    }
+
+    return 0;
+}
+
+-----------------------------------------------------------------------
+
+Student Header
+
+#ifndef STUDENT_H_INCLUDED
+#define STUDENT_H_INCLUDED
+
+#include <string>
+
+using namespace std;
+
+class Student{
+// Private Variables
+private:
+    int id;
+    string name;
+    float gpa;
+
+// Public Variables
+public:
+    //Class Functions
+    Student(int id, string name, float gpa);
+    Student(){};
+    int registerStudent();
+    int printStudent(int pcount);
+    int searchStudent(int psid);
+    //Accessor Setters
+    void setId(int id);
+    void setName(string name){this->name=name;};
+    void setGpa(float gpa){this->gpa=gpa;};
+    //Accessor Getters
+    int getId(){return id;};
+    string getName(){return name;};
+    float getGpa(){return gpa;};
+};
+
+#endif // STUDENT_H_INCLUDED
+
